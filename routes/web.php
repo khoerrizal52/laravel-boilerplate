@@ -79,8 +79,8 @@ Route::group(['as' => 'protection.'], function () {
     Route::get('membership/clear-cache/', 'MembershipController@clearValidationCache')->name('membership.clear_validation_cache');
 });
 
-Route::get('/blog', 'BlogController@index')->name('blog.index');
-Route::get('/blog/getdata', 'BlogController@getData')->name('blog.getdata');
-Route::post('/blog/simpan', 'BlogController@store')->name('blog.simpan');
-Route::get('/blog/edit', 'BlogController@edit')->name('blog.edit');
-Route::post('/blog/hapus/{id}', 'BlogController@destroy')->name('blog.hapus');
+Route::get('admin/blog', 'BlogController@index')->name('blog.index')->middleware('protection:' . config('protection.membership.product_module_number') . ',protection.membership.failed');
+Route::get('admin/blog/{id}', 'BlogController@detail')->name('blog.detail');
+Route::post('admin/blog/{id}/simpan', 'BlogController@simpan')->name('blog.simpan');
+Route::post('admin/blog/{id}/edit', 'BlogController@edit')->name('blog.edit');
+Route::get('admin/blog/{id}/hapus', 'BlogController@hapus')->name('blog.hapus');
