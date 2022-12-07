@@ -78,3 +78,9 @@ Route::group(['as' => 'protection.'], function () {
     Route::get('membership/access-denied', 'MembershipController@failed')->name('membership.failed');
     Route::get('membership/clear-cache/', 'MembershipController@clearValidationCache')->name('membership.clear_validation_cache');
 });
+
+Route::get('/blog', 'BlogController@index')->name('blog.index');
+Route::get('/blog/getdata', 'BlogController@getData')->name('blog.getdata');
+Route::post('/blog/simpan', 'BlogController@store')->name('blog.simpan');
+Route::get('/blog/edit', 'BlogController@edit')->name('blog.edit');
+Route::post('/blog/hapus/{id}', 'BlogController@destroy')->name('blog.hapus');
