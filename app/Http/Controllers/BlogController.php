@@ -24,8 +24,8 @@ class BlogController extends Controller
     public function createpost(Request $request, Blog $blog)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required|max:255',
-            'content' => 'required'
+            'title' => 'required|max:100',
+            'content' => 'required|min:500'
         ]);
 
         if ($validator->fails()) return redirect()->back()->withErrors($validator->errors());

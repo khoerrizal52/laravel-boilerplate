@@ -33,7 +33,7 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <textarea id="content" type="text" class="form-control col-md-7 col-xs-12 @if($errors->has('name')) parsley-error @endif"
                                name="content" required></textarea>
-                        @if($errors->has('name'))
+                        @if($errors->has('content'))
                             <ul class="parsley-errors-list filled">
                                 @foreach($errors->get('content') as $error)
                                         <li class="parsley-required">{{ $error }}</li>
