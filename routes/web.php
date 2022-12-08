@@ -80,7 +80,8 @@ Route::group(['as' => 'protection.'], function () {
 });
 
 Route::get('admin/blog', 'BlogController@index')->name('blog.index')->middleware('protection:' . config('protection.membership.product_module_number') . ',protection.membership.failed');
+Route::get('admin/blog/create', 'BlogController@create')->name('blog.create')->middleware('protection:' . config('protection.membership.product_module_number') . ',protection.membership.failed');
+Route::post('admin/blog/create', 'BlogController@createpost')->name('blog.createpost')->middleware('protection:' . config('protection.membership.product_module_number') . ',protection.membership.failed');
 Route::get('admin/blog/{id}', 'BlogController@detail')->name('blog.detail');
-Route::post('admin/blog/{id}/simpan', 'BlogController@simpan')->name('blog.simpan');
 Route::post('admin/blog/{id}/edit', 'BlogController@edit')->name('blog.edit');
 Route::get('admin/blog/{id}/hapus', 'BlogController@hapus')->name('blog.hapus');
