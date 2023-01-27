@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
 
         for($i=1; $i<=50; $i++){
             \DB::table('products')->insert([
-                'product_name' => $faker->sentence($nbWords =6, $variableNbWords=true),
+                'product_name' => $faker->word,
                 'product_code' => $faker->word,
                 'price' => $faker->randomFloat($nbMaxDecimals = NULL, $min=100000, $max=NULL),
                 'created_at' => $faker->dateTime($max='now', $timezone=null),
