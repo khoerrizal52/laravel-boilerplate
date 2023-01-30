@@ -45,6 +45,10 @@ class DashboardController extends Controller
         return view('admin.dashboard', ['counts' => $counts]);
     }
 
+    public function report(){
+        return view('admin.report');
+    }
+
 
     public function getLogChartData(Request $request)
     {
