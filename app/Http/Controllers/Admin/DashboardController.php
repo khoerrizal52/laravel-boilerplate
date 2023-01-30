@@ -112,4 +112,14 @@ class DashboardController extends Controller
 
         return response($data);
     }
+
+    public function getReportingProductPriceGrouping(){
+        $data = [
+            '< 50000' => 0,
+            '50000 - 99999' => 0,
+            '100000 - 999999' => 0,
+            '>= 1000000' => 0
+        ];
+        return response($data);
+    }
 }

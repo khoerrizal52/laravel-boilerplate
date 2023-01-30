@@ -75,6 +75,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::get('purchase-order-lines', 'PurchaseOrderController@getPurchaseOrderLineList')->name('purchase.order.lines');
     Route::get('purchase-order-lines/create', 'PurchaseOrderController@getPurchaseOrderLineCreate')->name('purchase.order.lines.create');
     Route::post('purchase-order-lines', 'PurchaseOrderController@postPurchaseOrderLineCreate')->name('purchase.order.lines.post.create');
+
+    Route::get('report/product-price-grouping','DashboardController@getReportingProductPriceGrouping')->name('report.product.price.grouping');
 });
 
 
