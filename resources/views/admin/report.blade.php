@@ -91,6 +91,13 @@
     };
 
     productPriceRange.init($('#product_price_range'));
+
+    $.ajax({
+        url: 'report/product-all-data',
+        success: function (response) {
+            console.log(response, "huh??????")
+        }
+    });
     </script>
 @endsection
 

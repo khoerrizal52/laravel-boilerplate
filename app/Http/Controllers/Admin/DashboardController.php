@@ -122,4 +122,9 @@ class DashboardController extends Controller
         ];
         return response($data);
     }
+
+    public function getDataAllProducts(){
+        $products = Product::all();
+        return response($products);
+    }
 }
