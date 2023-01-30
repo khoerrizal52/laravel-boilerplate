@@ -213,5 +213,117 @@
         }
     };
 
+    var registrationUsage = {
+        _defaults: {
+            type: 'doughnut',
+            tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+            data: {
+                labels: [],
+                datasets: [{
+                    data: [],
+                    backgroundColor: [
+                        "#3498DB",
+                        "#3498DB",
+                        "#9B59B6",
+                        "#E74C3C",
+                    ],
+                    hoverBackgroundColor: [
+                        "#36CAAB",
+                        "#49A9EA",
+                        "#B370CF",
+                        "#E95E4F",
+                    ]
+                }]
+            },
+            options: {
+                legend: false,
+                responsive: false
+            }
+        },
+        init: function ($el) {
+            var self = this;
+            $el = $($el);
+
+            $.ajax({
+                url: 'admin/dashboard/registration-chart',
+                success: function (response) {
+                    console.log("haloooooo?????")
+                    $.each($el.find('.tile_label'), function () {
+                        self._defaults.data.labels.push($(this).text());
+                    });
+
+                    var count = 0;
+
+                    $.each(response, function () {
+                        count += parseInt(this);
+                    });
+
+                    $('#registration_usage_from').text(100 / count * parseInt(response.registration_form));
+                    $('#registration_usage_google').text(100 / count * parseInt(response.google));
+                    $('#registration_usage_facebook').text(100 / count * parseInt(response.facebook));
+                    $('#registration_usage_twitter').text(100 / count * parseInt(response.twitter));
+
+                    self._defaults.data.datasets[0].data = [response.registration_form, response.google, response.facebook, response.twitter];
+
+                    new Chart($el.find('.canvasChart'), self._defaults);
+                }
+            });
+        }
+    };
+
     registrationUsage.init($('#registration_usage'));
+
+    var productPriceRange = {
+        _defaults: {
+            type: 'doughnut',
+            tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+            data: {
+                labels: [
+                    '< 50000',
+                    '50000 - 99999',
+                    '100000 - 999999',
+                    '>= 1000000'
+                ],
+                datasets: [{
+                    data: [],
+                    backgroundColor: [
+                        "#3498DB",
+                        "#3498DB",
+                        "#9B59B6",
+                        "#E74C3C",
+                    ],
+                    hoverBackgroundColor: [
+                        "#36CAAB",
+                        "#49A9EA",
+                        "#B370CF",
+                        "#E95E4F",
+                    ]
+                }]
+            },
+            options: {
+                legend: false,
+                responsive: false
+            }
+        },
+        init: function ($el) {
+            var self = this;
+            $el = $($el);
+
+            $.ajax({
+                url: 'admin/report/product-price-grouping',
+                success: function (response) {
+
+                    self._defaults.data.datasets[0].data = [
+                        response.less_50000, 
+                        response._50000_-_99999, 
+                        response._100000_-_999999, 
+                        response.more_than_equal_1000000];
+
+                    new Chart($el.find('.canvasChartProduct'), self._defaults);
+                }
+            });
+        }
+    };
+
+    productPriceRange.init($('#product_price_range'));
 })(jQuery);
