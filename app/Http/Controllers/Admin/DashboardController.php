@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Routing\Route;
+use App\Models\Product;
 
 class DashboardController extends Controller
 {
@@ -46,7 +47,8 @@ class DashboardController extends Controller
     }
 
     public function report(){
-        return view('admin.report');
+        $products = Product::all();
+        return view('admin.report', ["products" => $products]);
     }
 
 
