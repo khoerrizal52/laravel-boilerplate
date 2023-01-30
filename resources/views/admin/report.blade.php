@@ -22,6 +22,7 @@
             <canvas class="canvasChartProduct" height="520" width="520" style="margin: 15px 10px 10px 0">
             </canvas>
         </div>
+        <div id="output" style="margin: 30px;"></div>
 
     </div>
 @endsection
@@ -35,6 +36,7 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="https://pivottable.js.org/dist/pivot.js "></script>
     <input name="dates"/>
     <script>
         $('input[name="dates"]').daterangepicker();
@@ -95,7 +97,13 @@
     $.ajax({
         url: 'report/product-all-data',
         success: function (response) {
-            console.log(response, "huh??????")
+            $("#output").pivot(
+                response,
+                {
+                    rows: ["created_range"],
+                    cols: ["price_range"]
+                }
+            );
         }
     });
     </script>
@@ -105,4 +113,5 @@
     @parent
     {{ Html::style(mix('assets/admin/css/dashboard.css')) }}
     {{ Html::style(mix('assets/admin/css/users/edit.css')) }}
+    <link rel="stylesheet" type="text/css" href="https://pivottable.js.org/dist/pivot.css">
 @endsection
