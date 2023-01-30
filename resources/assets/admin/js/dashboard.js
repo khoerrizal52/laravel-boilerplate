@@ -140,10 +140,12 @@
             var $chartEl = $el.find('.chart');
 
             $dateEl.daterangepicker(this.options.date, function (start, end) {
+                console.log("<<<<<????")
                 $dateEl.find('.date_piker_label').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
             });
-
+            console.log("<<<<<????")
             $dateEl.on('apply.daterangepicker', function (ev, picker) {
+                console.log("<<<<<????")
                 self.gteChartData($chartEl, picker.startDate.format('YYYY-MM-DD'), picker.endDate.format('YYYY-MM-DD'));
             });
 
